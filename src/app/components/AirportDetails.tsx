@@ -1,41 +1,71 @@
-import React from 'react';
+import { useState } from 'react';
+import GeneralInfo from './GeneralInfo';
+import LocationInfo from './LocationInfo';
+import TimezoneInfo from './TimezoneInfo';
 
 interface AirportDetailsProps {
-  airport: {
+  airportData: {
     airport_name: string;
     iata_code: string;
-    icao_code: string;
+    icao_code?: string;
     country_name: string;
-    country_iso2: string;
+    city_name: string;
+    phone?: string;
+    latitude: number;
+    longitude: number;
+    timezone: string;
+    geoname_id: number | string;
     city_iata_code: string;
-    phone_number?: string | null;
   };
 }
 
-const AirportDetails: React.FC<AirportDetailsProps> = ({ airport }) => {
+const AirportDetails: React.FC<AirportDetailsProps> = ({ airportData }) => {
+  const [activeTab, setActiveTab] = useState('general');
+
   return (
-    <div className="airport-details">
-      <h2 className="title">{airport.airport_name}</h2>
-      <div className="info-card">
-        <h3>
-          ℹ️ <span>Información General</span>
-        </h3>
-        <p>
-          <strong>Código IATA:</strong> {airport.iata_code}
-        </p>
-        <p>
-          <strong>Código ICAO:</strong> {airport.icao_code}
-        </p>
-        <p>
-          <strong>País:</strong> {airport.country_name} ({airport.country_iso2})
-        </p>
-        <p>
-          <strong>Ciudad IATA:</strong> {airport.city_iata_code}
-        </p>
-        <p>
-          <strong>Teléfono:</strong> {airport.phone_number || 'No disponible'}
-        </p>
+    <div className="max-w-3xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-cyan-400 mb-4">
+        {airportData.airport_name}
+      </h1>
+
+      {/* Tabs */}
+      <div className="flex space-x-4 border-b border-gray-700 mb-4">
+        <button
+          className={`py-2 px-4 ${
+            activeTab === 'general'
+              ? 'border-b-2 border-cyan-400 text-cyan-400'
+              : 'text-gray-400'
+          }`}
+          onClick={() => setActiveTab('general')}
+        >
+          General
+        </button>
+        <button
+          className={`py-2 px-4 ${
+            activeTab === 'location'
+              ? 'border-b-2 border-cyan-400 text-cyan-400'
+              : 'text-gray-400'
+          }`}
+          onClick={() => setActiveTab('location')}
+        >
+          Ubicación
+        </button>
+        <button
+          className={`py-2 px-4 ${
+            activeTab === 'timezone'
+              ? 'border-b-2 border-cyan-400 text-cyan-400'
+              : 'text-gray-400'
+          }`}
+          onClick={() => setActiveTab('timezone')}
+        >
+          Zona Horaria
+        </button>
       </div>
+
+      {/* Contenido de los tabs */}
+      {activeTab === 'general' && <GeneralInfo airportData={airportData} />}
+      {activeTab === 'location' && <LocationInfo airportData={airportData} />}
+      {activeTab === 'timezone' && <TimezoneInfo airportData={airportData} />}
     </div>
   );
 };

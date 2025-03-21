@@ -1,28 +1,33 @@
-"use client";
+'use client';
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from 'next/navigation';
+import AirportDetails from '@/app/components/AirportDetails';
 
-const AirportDetails = () => {
+const AirportDetailss = () => {
   const searchParams = useSearchParams();
-  const airportData = searchParams.get("data");
+  const airportData = searchParams.get('data');
 
-  if (!airportData) return <p>No se encontraron datos del aeropuerto.</p>;
+  if (!airportData)
+    return (
+      <p className="text-white text-center mt-10">
+        No se encontraron datos del aeropuerto.
+      </p>
+    );
 
-  const airport = JSON.parse(decodeURIComponent(airportData));
+  let airport;
+  try {
+    airport = JSON.parse(decodeURIComponent(airportData));
+    console.log('Datos del aeropuerto:', airport);
+  } catch (error) {
+    console.error('Error al parsear los datos del aeropuerto:', error);
+    return (
+      <p className="text-white text-center mt-10">
+        Error al cargar los datos del aeropuerto.
+      </p>
+    );
+  }
 
-  return (
-    <div style={{ padding: "20px", color: "#fff" }}>
-      <h1 style={{ color: "cyan" }}>{airport.airport_name}</h1>
-      <div style={{ background: "#1a1a2e", padding: "15px", borderRadius: "10px" }}>
-        <h2>Información General</h2>
-        <p><strong>Código IATA:</strong> {airport.iata_code}</p>
-        <p><strong>Código ICAO:</strong> {airport.icao_code || "No disponible"}</p>
-        <p><strong>País:</strong> {airport.country_name}</p>
-        <p><strong>Ciudad:</strong> {airport.city_name}</p>
-        <p><strong>Teléfono:</strong> {airport.phone || "No disponible"}</p>
-      </div>
-    </div>
-  );
+  return <AirportDetails airportData={airport} />;
 };
 
-export default AirportDetails;
+export default AirportDetailss;
