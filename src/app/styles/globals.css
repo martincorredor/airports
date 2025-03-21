@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tailwindcss/preflight";
+@import 'tailwindcss';
+@import 'tailwindcss/preflight';
 @tailwind utilities;
 
 :root {
@@ -25,4 +25,78 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.airport-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: url('/background.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  color: white;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #4db8ff;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  width: 50%;
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  color: cyan;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: red;
+  margin-top: 50px;
+}
+
+.airport-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.airport-table th,
+.airport-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.airport-table th {
+  background: rgba(0, 0, 0, 0.3);
+  color: cyan;
+}
+
+.airport-table .clickable-row {
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.airport-table .clickable-row:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
