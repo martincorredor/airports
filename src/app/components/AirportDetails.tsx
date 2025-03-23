@@ -27,7 +27,6 @@ const AirportDetails: React.FC<AirportDetailsProps> = ({ airportData }) => {
 
   return (
     <div className="details-page">
-      {/* Botón de volver */}
       <button className="back-button" onClick={() => router.back()}>
         <Image src={backIcon} alt="Volver" width={24} height={24} />
         Volver
@@ -35,7 +34,6 @@ const AirportDetails: React.FC<AirportDetailsProps> = ({ airportData }) => {
 
       <h1 className="h1-gradient">{airportData.airport_name}</h1>
 
-      {/* Tabs */}
       <div className="details-page-tabs">
         <button
           className={`${
@@ -63,7 +61,6 @@ const AirportDetails: React.FC<AirportDetailsProps> = ({ airportData }) => {
         </button>
       </div>
 
-      {/* Contenido de los tabs */}
       {activeTab === 'general' && <GeneralInfo airportData={airportData} />}
       {activeTab === 'location' && <LocationInfo airportData={airportData} />}
       {activeTab === 'timezone' && <TimezoneInfo airportData={airportData} />}

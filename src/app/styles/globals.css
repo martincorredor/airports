@@ -261,8 +261,7 @@ html[data-theme='light'] .bg-airport::before {
   cursor: pointer;
 }
 
-/* ------------------------------------ DETAILS PAGE ------------------------------------- */
-
+/* --------------------------------- DETAILS PAGE ----------------------------------- */
 .details-page {
   position: absolute;
   top: 4vh;
@@ -363,10 +362,9 @@ html[data-theme='light'] .bg-airport::before {
   object-fit: cover;
 }
 
-/* --- Responsive Styles --- */
+/* ------------------------ Responsive Styles ---------------------------- */
 
 @media (max-width: 1024px) {
-  /* Ajustes para tablets */
   .search-bar {
     width: 80%;
     height: 5vh;
@@ -397,8 +395,6 @@ html[data-theme='light'] .bg-airport::before {
 }
 
 @media (max-width: 768px) {
-  /* Ajustes para móviles */
-
   .header {
     flex-direction: column;
     gap: 10px;
@@ -427,7 +423,6 @@ html[data-theme='light'] .bg-airport::before {
     width: 1rem;
   }
 
-  /* Ajustar las cards */
   .cards-container {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -444,7 +439,6 @@ html[data-theme='light'] .bg-airport::before {
     position: static;
   }
 
-  /* Ajuste de la tabla en móvil */
   .table-container {
     width: 100%;
     overflow-x: auto;
@@ -468,7 +462,6 @@ html[data-theme='light'] .bg-airport::before {
     padding: 10px;
   }
 
-  /* Paginación en móvil */
   .pagination-container {
     flex-wrap: wrap;
     justify-content: center;
@@ -482,7 +475,6 @@ html[data-theme='light'] .bg-airport::before {
     padding: 5px 10px;
   }
 
-  /* Ajuste de los detalles */
   .details-page {
     width: 95vw;
   }

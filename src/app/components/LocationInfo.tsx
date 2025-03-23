@@ -38,7 +38,6 @@ const LocationInfo: React.FC<LocationInfoProps> = ({ airportData }) => {
       </div>
       <br />
 
-      {/* Mapa de Google */}
       <div className="map-container">
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
           <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={12}>

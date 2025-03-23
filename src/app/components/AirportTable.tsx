@@ -68,7 +68,6 @@ const AirportTable = () => {
 
   return (
     <div className="main-container">
-      {/* Header con título y barra de búsqueda */}
       <div className="header">
         <h1 className="h1-gradient">SkyConnect Explorer</h1>
         <div className="search-bar">
@@ -92,7 +91,6 @@ const AirportTable = () => {
         </div>
       </div>
 
-      {/* Tarjetas de aeropuertos */}
       <div className="cards-container">
         {displayedAirports.map((airport) => (
           <div
@@ -106,12 +104,10 @@ const AirportTable = () => {
             </p>
             <span className="airport-card-code">{airport.iata_code}</span>
 
-            {/* Ícono de avión */}
             <div className="airport-card-icon">
               <Image src={flightIcon} alt="Avión" width={32} height={32} />
             </div>
 
-            {/* Fondo de la tarjeta */}
             <div className="absolute inset-0 opacity-20">
               <Image
                 src={flightImage}
@@ -123,7 +119,6 @@ const AirportTable = () => {
         ))}
       </div>
 
-      {/* Paginación */}
       <div className="pagination-container">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
