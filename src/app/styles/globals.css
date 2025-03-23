@@ -2,6 +2,8 @@
 @import 'tailwindcss/preflight';
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Inter:wght@400;700&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,79 +26,206 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
 }
 
-.airport-page {
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
+
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.bg-airport {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: url('../assets/airport.png') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-airport::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0d1934;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.main-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: url('/background.jpg') no-repeat center center/cover;
-  min-height: 100vh;
-  color: white;
+  height: 90vh;
+  width: 90vw;
+  gap: 4vh;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #4db8ff;
-  margin-bottom: 20px;
-}
-
-.info-card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  width: 50%;
-}
-
-.info-card h3 {
-  font-size: 1.5rem;
-  color: cyan;
-  margin-bottom: 10px;
-}
-
-.info-card p {
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.error-message {
-  text-align: center;
-  font-size: 1.5rem;
-  color: red;
-  margin-top: 50px;
-}
-
-.airport-table {
+.header {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h1-gradient {
+  background: linear-gradient(90deg, #0060ff, #00ffe7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.3rem;
+  font-weight: 800;
+}
+
+.search-bar {
+  width: 60%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-search {
+  width: 70%;
+  height: 7vh;
+  background-color: #fff;
+  color: #006fee;
+  padding: 0 20px;
+  border-radius: 40px;
+}
+
+.search-button {
+  width: 22%;
+  height: 7vh;
+  max-width: 218px;
+  background: linear-gradient(90deg, #0060ff, #00ffe7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   border-radius: 10px;
-  overflow: hidden;
-}
-
-.airport-table th,
-.airport-table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.airport-table th {
-  background: rgba(0, 0, 0, 0.3);
-  color: cyan;
-}
-
-.airport-table .clickable-row {
   cursor: pointer;
-  transition: background 0.3s ease;
+  border: solid 1.7px #fff;
+  transition: all 2s ease;
 }
 
-.airport-table .clickable-row:hover {
-  background: rgba(255, 255, 255, 0.2);
+.search-button:hover {
+  background: linear-gradient(90deg, #00ffe7, #0060ff);
+}
+
+.icon {
+  width: 2rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  width: 90vw;
+  max-width: 90vw;
+  gap: 20px;
+  justify-items: stretch;
+}
+
+.airport-card {
+  background: linear-gradient(90deg, #3f495f, #0e1934);
+  width: 100%;
+  height: 20vh;
+  min-width: 280px;
+  max-height: 235px;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  border: solid 1.7px #fff;
+  cursor: pointer;
+}
+
+
+.airport-card-location {
+  font-weight: 400;
+}
+
+.airport-card-code {
+  background: linear-gradient(90deg, #0060ff, #00ffe7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.airport-card-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+}
+
+.airport-card-image {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 50%;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.prev-button {
+  background: #0060FF;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.page-number {
+  background: #0060FF;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.current-page {
+  background: #48c3b7;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.next-button {
+  background: #0060FF;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
 }
