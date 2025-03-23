@@ -1,3 +1,8 @@
+import Image from 'next/image';
+import flightImage from '../assets/flight.png';
+import globalIcon from '../assets/icons/global.svg';
+import clockIcon from '../assets/icons/clock.svg';
+
 interface TimezoneInfoProps {
   airportData: {
     iata_code: string;
@@ -13,11 +18,32 @@ interface TimezoneInfoProps {
 
 const TimezoneInfo: React.FC<TimezoneInfoProps> = ({ airportData }) => {
   return (
-    <div className="bg-gray-800 p-4 rounded-lg mt-4">
-      <h2 className="text-xl font-semibold text-cyan-300 mb-2">Zona Horaria</h2>
-      <p>{airportData.timezone}</p>
-      <h2 className="text-xl font-semibold text-cyan-300 mb-2">Hora local</h2>
-      <p>{"No disponible"}</p>
+    <div className="details-section">
+      <div className="details-card">
+        <div className="details-card-title">
+          <Image src={globalIcon} alt="Avión" width={32} height={32} />
+          <h2 className="details-card-title-label">Zona Horaria</h2>
+        </div>
+        <div className="details-card-description">
+          <p>{airportData.timezone}</p>
+        </div>
+        <div className="absolute inset-0 opacity-20">
+          <Image src={flightImage} alt="Fondo" className="details-card-image" />
+        </div>
+      </div>
+      <br />
+      <div className="details-card">
+        <div className="details-card-title">
+          <Image src={clockIcon} alt="Avión" width={32} height={32} />
+          <h2 className="details-card-title-label">Hora Local</h2>
+        </div>
+        <div className="details-card-description">
+          <p>{'No disponible'}</p>
+        </div>
+        <div className="absolute inset-0 opacity-20">
+          <Image src={flightImage} alt="Fondo" className="details-card-image" />
+        </div>
+      </div>
     </div>
   );
 };

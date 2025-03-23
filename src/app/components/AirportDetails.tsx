@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import GeneralInfo from './GeneralInfo';
 import LocationInfo from './LocationInfo';
 import TimezoneInfo from './TimezoneInfo';
-
+import backIcon from '../assets/icons/go-back.png';
 interface AirportDetailsProps {
   airportData: {
     airport_name: string;
@@ -21,40 +23,39 @@ interface AirportDetailsProps {
 
 const AirportDetails: React.FC<AirportDetailsProps> = ({ airportData }) => {
   const [activeTab, setActiveTab] = useState('general');
+  const router = useRouter(); // Hook para la navegación
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold text-cyan-400 mb-4">
-        {airportData.airport_name}
-      </h1>
+    <div className="details-page">
+      {/* Botón de volver */}
+      <button className="back-button" onClick={() => router.back()}>
+        <Image src={backIcon} alt="Volver" width={24} height={24} />
+        Volver
+      </button>
+
+      <h1 className="h1-gradient">{airportData.airport_name}</h1>
 
       {/* Tabs */}
-      <div className="flex space-x-4 border-b border-gray-700 mb-4">
+      <div className="details-page-tabs">
         <button
-          className={`py-2 px-4 ${
-            activeTab === 'general'
-              ? 'border-b-2 border-cyan-400 text-cyan-400'
-              : 'text-gray-400'
+          className={`${
+            activeTab === 'general' ? 'tab-active' : 'tab-inactive'
           }`}
           onClick={() => setActiveTab('general')}
         >
           General
         </button>
         <button
-          className={`py-2 px-4 ${
-            activeTab === 'location'
-              ? 'border-b-2 border-cyan-400 text-cyan-400'
-              : 'text-gray-400'
+          className={`${
+            activeTab === 'location' ? 'tab-active' : 'tab-inactive'
           }`}
           onClick={() => setActiveTab('location')}
         >
           Ubicación
         </button>
         <button
-          className={`py-2 px-4 ${
-            activeTab === 'timezone'
-              ? 'border-b-2 border-cyan-400 text-cyan-400'
-              : 'text-gray-400'
+          className={`${
+            activeTab === 'timezone' ? 'tab-active' : 'tab-inactive'
           }`}
           onClick={() => setActiveTab('timezone')}
         >

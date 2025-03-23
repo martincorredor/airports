@@ -1,5 +1,9 @@
 'use client';
 
+import Image from 'next/image';
+import flightImage from '../assets/flight.png';
+import mapPointIcon from '../assets/icons/map_point.svg';
+
 interface LocationInfoProps {
   airportData: {
     latitude: number | string;
@@ -17,9 +21,14 @@ const LocationInfo: React.FC<LocationInfoProps> = ({ airportData }) => {
   const center = { lat, lng };
 
   return (
-    <div className="bg-gray-800 p-4 rounded-lg mt-4">
-      <h2 className="text-xl font-semibold text-cyan-300 mb-2">Ubicación</h2>
-      <p>
+    <div className="details-section">
+      <div className="details-card">
+        <div className="details-card-title">
+          <Image src={mapPointIcon} alt="Avión" width={32} height={32} />
+          <h2 className="details-card-title-label">Ubicación</h2>
+        </div>
+        <div className="details-card-description">
+        <p>
         <strong>Latitud:</strong> {lat}
       </p>
       <p>
@@ -28,6 +37,11 @@ const LocationInfo: React.FC<LocationInfoProps> = ({ airportData }) => {
       <p>
         <strong>ID Geoname:</strong> {airportData.geoname_id}
       </p>
+        </div>
+        <div className="absolute inset-0 opacity-20">
+          <Image src={flightImage} alt="Fondo" className="details-card-image" />
+        </div>
+      </div>
     </div>
   );
 };

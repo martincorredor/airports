@@ -163,7 +163,6 @@ h6 {
   cursor: pointer;
 }
 
-
 .airport-card-location {
   font-weight: 400;
 }
@@ -200,7 +199,7 @@ h6 {
 }
 
 .prev-button {
-  background: #0060FF;
+  background: #0060ff;
   color: white;
   padding: 5px 15px;
   border-radius: 10px;
@@ -208,7 +207,7 @@ h6 {
 }
 
 .page-number {
-  background: #0060FF;
+  background: #0060ff;
   color: white;
   padding: 5px 15px;
   border-radius: 10px;
@@ -223,9 +222,111 @@ h6 {
 }
 
 .next-button {
-  background: #0060FF;
+  background: #0060ff;
   color: white;
   padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+/* ------------------------------------ DETAILS PAGE ------------------------------------- */
+
+.details-page {
+  position: absolute;
+  top: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 90vw;
+  gap: 4vh;
+}
+
+.back-button {
+  background: #0060ff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 2vh;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.details-page-tabs {
+  width: 100%;
+  height: 7vh;
+  max-height: 78px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #3f495f, #0e1934);
+}
+
+.tab-active {
+  background: #0060ff;
+  color: white;
+  height: 80%;
+  width: 30%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tab-inactive {
+  color: rgb(173, 165, 165);
+  height: 80%;
+  width: 30%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.details-section {
+  width: 100%;
+}
+
+.details-card {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2vw;
+  gap: 1.5vw;
+  border: 1.7px solid #fff;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #3f495f, #0e1934);
+  overflow: hidden;
+}
+
+.details-card-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1vw;
+}
+
+.details-card-title-label {
+  background: linear-gradient(90deg, #0060ff, #00ffe7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.details-card-description {
+  line-height: 1.5rem;
+}
+
+.details-card-image {
+  position: absolute;
+  width: 40%;
+  left: 60%;
+  object-fit: cover;
 }
