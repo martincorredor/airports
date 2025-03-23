@@ -51,7 +51,13 @@ h6 {
   font-weight: 700;
 }
 
-h4, h5, h6, p, span, a, li {
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li {
   color: var(--foreground);
 }
 

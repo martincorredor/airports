@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAirportStore } from '../store/airportStore';
 import Image from 'next/image';
 import flightImage from '../assets/flight.png';
 import searchIcon from '../assets/icons/search_icon.svg';
@@ -9,13 +10,32 @@ import flightIcon from '../assets/icons/flight.svg';
 
 const ITEMS_PER_PAGE = 6;
 
-
 const AirportTable = () => {
+  const { airports, cities, isLoading, error, fetchAllData } =
+    useAirportStore();
   const router = useRouter();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredAirports = dummyAirports.filter(
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
+  const getCityName = (iataCode: string) => {
+    const city = cities.find((c) => c.iata_code === iataCode);
+    return city ? city.city_name : 'Desconocido';
+  };
+
+  const handleCardClick = (airport: any) => {
+    const cityName = getCityName(airport.iata_code);
+    const airportData = encodeURIComponent(
+      JSON.stringify({ ...airport, city_name: cityName })
+    );
+    router.push(`/airport/${airport.iata_code}?data=${airportData}`);
+  };
+
+  const filteredAirports = airports.filter(
     (airport) =>
       airport.airport_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       airport.iata_code.toLowerCase().includes(searchQuery.toLowerCase())
@@ -27,25 +47,28 @@ const AirportTable = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const handleCardClick = (airport: any) => {
-    const airportData = encodeURIComponent(JSON.stringify(airport));
-    router.push(`/airport/${airport.iata_code}?data=${airportData}`);
+  const generatePagination = () => {
+    if (totalPages <= 3) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    if (currentPage <= 2) {
+      return [1, 2, '...', totalPages];
+    }
+
+    if (currentPage >= totalPages - 1) {
+      return [1, '...', totalPages - 1, totalPages];
+    }
+
+    return [1, '...', currentPage, '...', totalPages];
   };
 
-  let startPage = Math.max(1, currentPage - 1);
-  let endPage = Math.min(totalPages, startPage + 2);
-
-  if (endPage - startPage < 2) {
-    startPage = Math.max(1, endPage - 2);
-  }
-
-  const pageNumbers = Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i
-  );
+  if (isLoading) return <p className="loading-text">Cargando...</p>;
+  if (error) return <p className="error-text">{error}</p>;
 
   return (
     <div className="main-container">
+      {/* Header con título y barra de búsqueda */}
       <div className="header">
         <h1 className="h1-gradient">SkyConnect Explorer</h1>
         <div className="search-bar">
@@ -59,7 +82,7 @@ const AirportTable = () => {
           <button className="search-button">
             <Image
               src={searchIcon}
-              alt="Icono"
+              alt="Buscar"
               width={20}
               height={20}
               className="icon"
@@ -69,36 +92,38 @@ const AirportTable = () => {
         </div>
       </div>
 
+      {/* Tarjetas de aeropuertos */}
       <div className="cards-container">
         {displayedAirports.map((airport) => (
           <div
             key={airport.id}
             onClick={() => handleCardClick(airport)}
-            className='airport-card'
+            className="airport-card"
           >
             <h2 className="airport-card-name">{airport.airport_name}</h2>
             <p className="airport-card-location">
-              {'Villa de Leyva'}, {airport.country_name}
+              {getCityName(airport.iata_code)}, {airport.country_name}
             </p>
-            <span className="airport-card-code">
-              {airport.iata_code}
-            </span>
+            <span className="airport-card-code">{airport.iata_code}</span>
 
+            {/* Ícono de avión */}
             <div className="airport-card-icon">
               <Image src={flightIcon} alt="Avión" width={32} height={32} />
             </div>
 
+            {/* Fondo de la tarjeta */}
             <div className="absolute inset-0 opacity-20">
               <Image
                 src={flightImage}
                 alt="Fondo"
-                className='airport-card-image'
+                className="airport-card-image"
               />
             </div>
           </div>
         ))}
       </div>
 
+      {/* Paginación */}
       <div className="pagination-container">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -108,41 +133,23 @@ const AirportTable = () => {
           Anterior
         </button>
 
-        {startPage > 1 && (
-          <>
-            <button onClick={() => setCurrentPage(1)} className="page-number">
-              1
-            </button>
-            <span className="dots">...</span>
-          </>
-        )}
-
-        {pageNumbers.map((page) => (
+        {generatePagination().map((page, index) => (
           <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={` ${
-              currentPage === page
-                ? 'current-page'
-                : 'page-number'
+            key={index}
+            onClick={() => typeof page === 'number' && setCurrentPage(page)}
+            className={`page-number ${
+              currentPage === page ? 'current-page' : ''
             }`}
+            disabled={typeof page !== 'number'}
           >
             {page}
           </button>
         ))}
 
-        {/* Si la última página no está en el rango visible, mostrar "..." y la última página */}
-        {endPage < totalPages && (
-          <>
-            <span className="dots">...</span>
-            <button onClick={() => setCurrentPage(totalPages)} className="page-number">
-              {totalPages}
-            </button>
-          </>
-        )}
-
         <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
           className="next-button"
           disabled={currentPage === totalPages}
         >
