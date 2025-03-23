@@ -6,14 +6,20 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-:root {
+  --foreground: #000000;
+  --card-bg: #3f495f;
+  --card-border: #fff;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+html[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card-bg: #1a1a2e;
+  --card-border: #48c3b7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +41,7 @@ h2,
 h3 {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: 700;
+  color: var(--foreground);
 }
 
 h4,
@@ -42,6 +49,10 @@ h5,
 h6 {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
+}
+
+h4, h5, h6, p, span, a, li {
+  color: var(--foreground);
 }
 
 .bg-airport {
@@ -64,8 +75,23 @@ h6 {
   width: 100vw;
   height: 100vh;
   background: #0d1934;
-  opacity: 0.7;
+  opacity: 0.3;
   z-index: -1;
+}
+
+html[data-theme='light'] .bg-airport::before {
+  opacity: 0;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .main-container {
@@ -150,7 +176,8 @@ h6 {
 }
 
 .airport-card {
-  background: linear-gradient(90deg, #3f495f, #0e1934);
+  background: var(--card-bg);
+  border: 1.7px solid var(--card-border);
   width: 100%;
   height: 20vh;
   min-width: 280px;
@@ -159,7 +186,6 @@ h6 {
   position: relative;
   padding: 20px;
   border-radius: 8px;
-  border: solid 1.7px #fff;
   cursor: pointer;
 }
 
@@ -267,7 +293,7 @@ h6 {
   align-items: center;
   padding: 0 10px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #3f495f, #0e1934);
+  background: var(--card-bg);
 }
 
 .tab-active {
@@ -329,4 +355,148 @@ h6 {
   width: 40%;
   left: 60%;
   object-fit: cover;
+}
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 1024px) {
+  /* Ajustes para tablets */
+  .search-bar {
+    width: 80%;
+    height: 5vh;
+  }
+
+  .input-search {
+    width: 75%;
+    height: 5vh;
+  }
+
+  .search-button {
+    width: 25%;
+    height: 5vh;
+    margin-left: 10px;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+
+  .details-card {
+    padding: 4vw;
+  }
+
+  .details-card-title-label {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ajustes para móviles */
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .h1-gradient {
+    font-size: 1.7rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    gap: 10px;
+    height: 5vh;
+  }
+
+  .input-search {
+    height: 5vh;
+  }
+
+  .search-button {
+    height: 5vh;
+  }
+
+  .icon {
+    width: 1rem;
+  }
+
+  /* Ajustar las cards */
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .airport-card {
+    height: auto;
+    padding: 15px;
+  }
+
+  .airport-card-image {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+
+  /* Ajuste de la tabla en móvil */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .table {
+    width: 90%;
+    display: block;
+  }
+
+  .table th,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+  }
+
+  /* Paginación en móvil */
+  .pagination-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .prev-button,
+  .next-button,
+  .page-number {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  /* Ajuste de los detalles */
+  .details-page {
+    width: 95vw;
+  }
+
+  .details-page-tabs {
+    flex-direction: column;
+    height: auto;
+    gap: 5px;
+  }
+
+  .tab-active,
+  .tab-inactive {
+    width: 100%;
+  }
+
+  .details-card {
+    padding: 5vw;
+  }
+
+  .details-card-title-label {
+    font-size: 1.3rem;
+  }
 }
