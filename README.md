@@ -1,5 +1,5 @@
 # ✈️ SkyConnect Explorer
-![](/project-recordings/generalInfo-desktop.png)
+![](/project-recordings/Desktop.png)
 
 ## 
 SkyConnect Explorer is a powerful and intuitive web application that allows users to explore airport details worldwide. With a modern and responsive UI, it provides essential airport information, interactive Google Maps integration for real-time location display, and seamless pagination for smooth navigation. Leveraging the AviationStack API, this project ensures accurate and up-to-date data, making it a great tool for aviation enthusiasts, travelers, and professionals.
@@ -37,10 +37,10 @@ $ npm run dev
 - **Testing** Implement unit and integration tests using Jest.
 
 ## App
-![](/project-recordings/principal-desktop.png)  | ![](/project-recordings/principal-mobile.png)
+![](/project-recordings/Desktop.png)  | ![](/project-recordings/Mobile.png)
 :-------------------------:|:-------------------------:
-![](/project-recordings/generalInfo-desktop.png) | ![](/project-recordings/location-desktop.png)
-![](/project-recordings/hourlyZone-desktop.png)  | ![](/project-recordings/hourly-mobile.png)
+![](/project-recordings/General.png) | ![](/project-recordings/Location.png)
+![](/project-recordings/Desktop%20hourly.png)  | ![](/project-recordings/Mobile%20hourly.png)
 
 
 ## Author
