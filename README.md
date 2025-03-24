@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✈️ SkyConnect Explorer
+![](/project-recordings/generalInfo-desktop.png)
 
-## Getting Started
+## 
+SkyConnect Explorer is a powerful and intuitive web application that allows users to explore airport details worldwide. With a modern and responsive UI, it provides essential airport information, interactive Google Maps integration for real-time location display, and seamless pagination for smooth navigation. Leveraging the AviationStack API, this project ensures accurate and up-to-date data, making it a great tool for aviation enthusiasts, travelers, and professionals.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Setup
+To run this project, after cloning this repository, install it locally using npm:
+```
+$ cd airports
+$ npm install
+$ npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Additional Features
+- **Fully responsive design:** Optimized for all screen sizes.
+- **Dark mode:** For a better user experience in low-light environments.
+- **Google Maps integration:** View airport locations interactively.
+- **Two API endpoints from AviationStack:** Real-time airport and location data.
+- **Pagination system:** Dynamic navigation with ellipsis for better usability.
+- **Unit testing with Jest & React Testing Library:** Ensuring stability and reliability.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies used
+- **Framework:** Next, Zustand
+- **Programming Language:** TypeScript
+- **Styling:** CSS, Tailwind
+- **Hosting:** Netlify
+- **APIs:**
+  - [Aviation Stack](https://aviationstack.com/) (for airports info)
+  - [Google maps API](https://developers.google.com/maps?hl=es-419) (for airport location in maps)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Future Work
+- **More Unit & Integration Tests:** Improve test coverage for better maintainability.
+- **UI Enhancements:** Add animations and smooth transitions for a more engaging experience.
+- **Better Code Modularity:** Refactor and optimize components for greater scalability.
+- **Testing** Implement unit and integration tests using Jest.
 
-## Learn More
+## App
+![](/project-recordings/principal-desktop.png)  | ![](/project-recordings/principal-mobile.png)
+:-------------------------:|:-------------------------:
+![](/project-recordings/generalInfo-desktop.png) | ![](/project-recordings/location-desktop.png)
+![](/project-recordings/hourlyZone-desktop.png)  | ![](/project-recordings/hourly-mobile.png)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Author
+**Martin Corredor** - [martincorredor](https://github.com/martincorredor)
